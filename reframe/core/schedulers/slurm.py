@@ -143,8 +143,6 @@ class SlurmJobScheduler(sched.JobScheduler):
             self._format_option(job.num_tasks_per_socket,
                                 '--ntasks-per-socket={0}'),
             self._format_option(job.num_cpus_per_task, '--cpus-per-task={0}'),
-            self._format_option(job.sched_partition, '--partition={0}'),
-            self._format_option(job.sched_account, '--account={0}'),
             self._format_option(job.sched_nodelist, '--nodelist={0}'),
             self._format_option(job.sched_exclude_nodelist, '--exclude={0}'),
             self._format_option(job.sched_reservation, '--reservation={0}')
@@ -230,11 +228,6 @@ class SlurmJobScheduler(sched.JobScheduler):
     def filternodes(self, job, nodes):
         # Collect options that restrict node selection
         options = job.sched_access + job.options
-        if job.sched_partition:
-            options.append('--partition=%s' % job.sched_partition)
-
-        if job.sched_account:
-            options.append('--account=%s' % job.sched_account)
 
         if job.sched_nodelist:
             options.append('--nodelist=%s' % job.sched_nodelist)
