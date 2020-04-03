@@ -143,9 +143,6 @@ class SlurmJobScheduler(sched.JobScheduler):
             self._format_option(job.num_tasks_per_socket,
                                 '--ntasks-per-socket={0}'),
             self._format_option(job.num_cpus_per_task, '--cpus-per-task={0}'),
-            self._format_option(job.sched_nodelist, '--nodelist={0}'),
-            self._format_option(job.sched_exclude_nodelist, '--exclude={0}'),
-            self._format_option(job.sched_reservation, '--reservation={0}')
         ]
 
         # Slurm replaces '%a' by the corresponding SLURM_ARRAY_TASK_ID
@@ -228,15 +225,6 @@ class SlurmJobScheduler(sched.JobScheduler):
     def filternodes(self, job, nodes):
         # Collect options that restrict node selection
         options = job.sched_access + job.options
-
-        if job.sched_nodelist:
-            options.append('--nodelist=%s' % job.sched_nodelist)
-
-        if job.sched_exclude_nodelist:
-            options.append('--exclude=%s' % job.sched_exclude_nodelist)
-
-        if job.sched_reservation:
-            options.append('--reservation=%s' % job.sched_reservation)
 
         option_parser = ArgumentParser()
         option_parser.add_argument('--reservation')

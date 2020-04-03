@@ -89,12 +89,6 @@ class SrunAllocationLauncher(JobLauncher):
             hint = 'multithread' if job.use_smt else 'nomultithread'
             ret += ['--hint=%s' % hint]
 
-        if job.sched_nodelist:
-            ret += ['--nodelist=%s' % str(job.sched_nodelist)]
-
-        if job.sched_exclude_nodelist:
-            ret += ['--exclude=%s' % str(job.sched_exclude_nodelist)]
-
         for opt in job.options:
             if opt.startswith('#'):
                 continue

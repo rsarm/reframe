@@ -146,6 +146,12 @@ def main():
 
     # Run options
     run_options.add_argument(
+        '-A', '--account', action='store',
+        help='Use ACCOUNT for submitting jobs')
+    run_options.add_argument(
+        '-P', '--partition', action='store', metavar='PART',
+        help='Use PART for submitting jobs')
+    run_options.add_argument(
         '--reservation', action='store', metavar='RES',
         help='Use RES for submitting jobs')
     run_options.add_argument(
@@ -606,9 +612,6 @@ def main():
 
             exec_policy.sched_flex_alloc_nodes = sched_flex_alloc_nodes
             exec_policy.flex_alloc_nodes = options.flex_alloc_nodes
-            exec_policy.sched_reservation = options.reservation
-            exec_policy.sched_nodelist = options.nodelist
-            exec_policy.sched_exclude_nodelist = options.exclude_nodes
             exec_policy.sched_options = options.job_options
             try:
                 max_retries = int(options.max_retries)
