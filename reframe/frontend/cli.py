@@ -595,11 +595,13 @@ def main():
 
         options.flex_alloc_nodes = options.flex_alloc_nodes or 'idle'
         if options.account:
+            options.job_options.append(f'account={options.account}')
             printer.warning(f"`--account' is deprecated and "
                             f"will be removed in the future; you should "
                             f"use `-J account={options.account}'")
 
         if options.partition:
+            options.job_options.append(f'partition={options.partition}')
             printer.warning(f"`--partition' is deprecated and "
                             f"will be removed in the future; you should "
                             f"use `-J partition={options.partition}' "
@@ -607,16 +609,19 @@ def main():
                             f"scheduler")
 
         if options.reservation:
+            options.job_options.append(f'reservation={options.reservation}')
             printer.warning(f"`--reservation' is deprecated and "
                             f"will be removed in the future; you should "
                             f"use `-J reservation={options.reservation}'")
 
         if options.nodelist:
+            options.job_options.append(f'nodelist={options.nodelist}')
             printer.warning(f"`--nodelist' is deprecated and "
                             f"will be removed in the future; you should "
                             f"use `-J nodelist={options.nodelist}'")
 
         if options.exclude_nodes:
+            options.job_options.append(f'exclude={options.exclude_nodes}')
             printer.warning(f"`--exclude-nodes' is deprecated and "
                             f"will be removed in the future; you should "
                             f"use `-J exclude={options.exclude_nodes}'")

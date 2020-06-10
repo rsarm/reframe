@@ -100,9 +100,9 @@ class PbsJobScheduler(sched.JobScheduler):
             preamble.append(
                 self._format_option('-l walltime=%d:%d:%d' % (h, m, s)))
 
-        if job.sched_partition:
-            preamble.append(
-                self._format_option('-q %s' % job.sched_partition))
+        # if job.sched_partition:
+        #     preamble.append(
+        #         self._format_option('-q %s' % job.sched_partition))
 
         preamble += self._emit_lselect_option(job)
 
